@@ -10,9 +10,11 @@ let userID = 1;
 router.post("/signup", (req, res) => {
 const {username, password} = req.body;
 
+
 if (!username || !password) {
     return res.status(400).json({error: "Username and password required "});
 }
+
 
 })
 
