@@ -1,3 +1,5 @@
+// Her legger jeg inn API-endepunkter for å hente værdata som brukes i WearCast
+
 import express from "express";
 
 const router = express.Router();
