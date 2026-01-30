@@ -58,4 +58,18 @@ router.post("/logout", (req, res) =>{
 
 //--------------Delete-------------------------
 
+router.delete("/deleteuser", (req, res) =>{
+    const { username } = req.body;
+
+    const index = users.findIndex (u => u.username === username);
+
+    if (index === -1){
+        return res.status(404).json({error:"user not found"});
+    }
+    users.splice(index, 1);
+    req.destroy();
+
+    return res.status(200).json({success: true});
+});
+
 export default router;
