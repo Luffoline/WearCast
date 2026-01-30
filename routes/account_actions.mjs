@@ -51,7 +51,7 @@ router.post("/login", (req, res) =>{
 //--------------Logout-------------------------
 
 router.post("/logout", (req, res) =>{
-    req.destroy();
+    req.session.destroy();
 
    return res.status(200).json({success: true});
 })
