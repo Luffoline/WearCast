@@ -1,0 +1,196 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: My first collection
+meta:
+  id: wrk_9502419fee1a465a88e48d53acdb6f0b
+  created: 1769186812074
+  modified: 1769186812074
+  description: ""
+collection:
+  - name: App
+    meta:
+      id: fld_8e3fb5f425b84276bba542272c3ace73
+      created: 1769707229509
+      modified: 1769707229509
+      sortKey: -1769707229509
+      description: ""
+    children:
+      - url: localhost:3000/api/weather/Grimstad
+        name: weather
+        meta:
+          id: req_c0c7d2991e86467ca5a32ed7da5dc557
+          created: 1769186812084
+          modified: 1769707252435
+          isPrivate: false
+          description: ""
+          sortKey: -1769707236041
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Account
+    meta:
+      id: fld_c510b32953144c75b43acaf8b6e0bc30
+      created: 1769707273024
+      modified: 1769707281719
+      sortKey: -1769707278458
+      description: ""
+    children:
+      - url: localhost:3000/account/signup
+        name: signup
+        meta:
+          id: req_4eea4863a52540be9b324cfbd94002a3
+          created: 1769707278358
+          modified: 1769795728596
+          isPrivate: false
+          description: ""
+          sortKey: -1769707301240
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"username": "karo",
+            	"password": "123"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:3000/account/login
+        name: Login
+        meta:
+          id: req_930fbcd9633944e083cf8589321f2806
+          created: 1769795719565
+          modified: 1769799209262
+          isPrivate: false
+          description: ""
+          sortKey: -1769707301340
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"username": "karo",
+             "password": "123"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:3000/account/logout
+        name: Logout
+        meta:
+          id: req_e04adeceebe34764b772ab52a509c230
+          created: 1769796752839
+          modified: 1769798948938
+          isPrivate: false
+          description: ""
+          sortKey: -1769707301440
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"username": "karo0",
+             "password": "12frg3"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:3000/account/deleteuser
+        name: delete
+        meta:
+          id: req_df8ec8ded54e4ba0acab7b3c898d7ab6
+          created: 1769797416870
+          modified: 1769798968473
+          isPrivate: false
+          description: ""
+          sortKey: -1769707301540
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"username": "karo",
+             "password": "123"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.3.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_55709e6961499ce3ce43c398ecc469b2a4602e5b
+    created: 1769186812079
+    modified: 1769186812079
+environments:
+  name: Base Environment
+  meta:
+    id: env_55709e6961499ce3ce43c398ecc469b2a4602e5b
+    created: 1769186812077
+    modified: 1769707390470
+    isPrivate: false
+  data:
+    base_url: http://localhost:3000
