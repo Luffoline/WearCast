@@ -23,8 +23,9 @@ function update() {
       break;
 
     case "loggedin":
-      app.innerHTML = loggedInView();
+      app.innerHTML = dashboardView();
       bindLoggedIn();
+      bindWeather()
       break;
 
     case "edit":
@@ -42,17 +43,43 @@ function update() {
 // UI views (innerHTML)
 function signInView() {
   return `
-    <h1>Weather App</h1>
+    <div class="login-container">
+      <h1>LOGIN</h1>
 
-    <form id="signin">
-      <input name="user" placeholder="Username" required />
-      <input name="pass" type="password" placeholder="Password" required />
-      <button>Sign in</button>
-    </form>
+      <form id="signin" method="post">
+        <div class="input-group">
+          <label for="user">EMAIL</label>
+          <input 
+            type="text" 
+            id="user" 
+            name="user" 
+            placeholder="your@email.com" 
+            required
+          />
+        </div>
 
-    <button id="to-signup">Create account</button>
+        <div class="input-group">
+          <label for="pass">PASSWORD</label>
+          <input 
+            type="password" 
+            id="pass" 
+            name="pass" 
+            placeholder="••••••••" 
+            required
+          />
+        </div>
+
+        <button type="submit">SIGN IN</button>
+      </form>
+
+      <div class="footer">
+        Don't have an account? 
+        <a href="#" id="to-signup">Sign up</a>
+      </div>
+    </div>
   `;
 }
+
 
 
 function signUpView() {
@@ -70,16 +97,38 @@ function signUpView() {
   `;
 }
 
-function loggedInView() {
+function dashboardView() {
   return `
-    <h1>Weather App</h1>
-    <p>Logged in as <strong>${state.user}</strong></p>
+    <div class="login-container">
+      <h1>Weather</h1>
 
-    <button id="edit">Edit account</button>
-    <button id="logout">Log out</button>
-    <button id="delete">Delete</button>
+      <form id="weather-form">
+        <input
+          type="text"
+          name="city"
+          placeholder="Enter city"
+          required
+        />
+        <button type="submit">Get weather</button>
+      </form>
+
+      <div id="weather-card"></div>
+
+      <img
+         src="./assets/Base-figure.png"
+          alt="Base figure"
+      class="dashboard-image"
+/>
+
+
+      <button id="edit">Edit account</button>
+      <button id="delete">Delete</button>
+      <button id="logout">Log out</button>
+    </div>
   `;
 }
+
+
 
 function editAccountView() {
   return `
@@ -123,7 +172,7 @@ function bindSignIn() {
       state.view = "loggedin";
       update();
     } catch (err) {
-      alert("Invalid username or password");
+      
     }
   };
 
@@ -179,6 +228,25 @@ function bindLoggedIn() {
     update();
   };
 }
+
+function bindWeather() {
+  const form = document.getElementById("weather-form");
+  const card = document.getElementById("weather-card");
+
+  form.onsubmit = async e => {
+    e.preventDefault();
+
+    const city = form.city.value;
+
+    try {
+      const data = await api("GET", `/api/weather?city=${city}`);
+      card.innerHTML = renderWeather(data);
+    } catch {
+      card.innerHTML = `<p>Could not fetch weather</p>`;
+    }
+  };
+}
+
 
 // Edit account
 function bindEdit() {
@@ -237,6 +305,22 @@ function bindDelete() {
     state.view = "loggedin";
     update();
   };
+}
+function renderWeather(data) {
+  const {
+    name,
+    main: { temp, humidity },
+    weather: [{ description }]
+  } = data;
+
+  return `
+    <div class="card">
+      <h2>${name}</h2>
+      <p>${(temp - 273.15).toFixed(1)}°C</p>
+      <p>Humidity: ${humidity}%</p>
+      <p>${description}</p>
+    </div>
+  `;
 }
 
 
