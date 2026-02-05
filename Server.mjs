@@ -16,14 +16,14 @@ app.use(
     saveUninitialized: false
   })
 );
+
 app.use(express.json());
 
-app.get("/",(req, res, next) =>{
-  res.send("server kjører")
-});
+
+app.use(express.static("main_app"));
+
 
 app.use("/api/weather", weatherRoutes);
-
 app.use("/account", authRoutes);
 
 app.listen(PORT, () => {

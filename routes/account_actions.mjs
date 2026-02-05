@@ -44,6 +44,7 @@ router.post("/login", (req, res) =>{
     if (!user){
         return res.status(401).json({error: "Invalid username or password"});
     }
+      req.session.user = user;
 
     res.status(200).json({success: true});
 }) 
@@ -67,7 +68,7 @@ router.delete("/deleteuser", (req, res) =>{
         return res.status(404).json({error:"user not found"});
     }
     users.splice(index, 1);
-    req.destroy();
+    req.session.destroy();
 
     return res.status(200).json({success: true});
 });
