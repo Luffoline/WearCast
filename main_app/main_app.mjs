@@ -44,7 +44,7 @@ function signInView() {
   return `
     <h1>Weather App</h1>
 
-    <form id="signin" method="post">
+    <form id="signin">
       <input name="user" placeholder="Username" required />
       <input name="pass" type="password" placeholder="Password" required />
       <button>Sign in</button>
@@ -59,7 +59,7 @@ function signUpView() {
   return `
     <h1>Weather App</h1>
 
-    <form id="signup" method="post">
+    <form id="signup">
       <input name="user" placeholder="Username" required />
       <input name="email" type="email" placeholder="Email" required />
       <input name="pass" type="password" placeholder="Password" required />
@@ -133,8 +133,6 @@ function bindSignIn() {
   };
 }
 
-
-
 // Sign up logic
 function bindSignUp() {
   document.getElementById("signup").onsubmit = async e => {
@@ -173,6 +171,7 @@ function bindLoggedIn() {
   document.getElementById("edit").onclick = () => {
     state.view = "edit";
     update();
+    
   };
 
   document.getElementById("delete").onclick = () => {
@@ -183,11 +182,40 @@ function bindLoggedIn() {
 
 // Edit account
 function bindEdit() {
+  document.getElementById("edit-form").onsubmit = async e => {
+    e.preventDefault();
+
+    const form = e.target;
+    const updateData = {};
+
+    if (form.user.value) {
+      updateData.username = form.user.value;
+    }
+
+    if (form.pass.value) {
+      updateData.password = form.pass.value;
+    }
+
+    try {
+      await api("PUT", "/account/edit", updateData);
+
+      if (updateData.username) {
+        state.user = updateData.username;
+      }
+
+      state.view = "signin";
+      update();
+    } catch {
+      alert("Could not update account");
+    }
+  };
+
   document.getElementById("cancel").onclick = () => {
     state.view = "loggedin";
     update();
   };
 }
+
 
 // Delete account
 function bindDelete() {

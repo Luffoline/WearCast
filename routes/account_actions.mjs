@@ -27,7 +27,7 @@ const existingUser = users.find(u => u.username === username);
   };
 
   users.push(newUser);
-
+  req.session.user = newUser;
   res.status(201).json({ success: true });
 
 });
@@ -56,6 +56,44 @@ router.post("/logout", (req, res) =>{
 
    return res.status(200).json({success: true});
 })
+
+//--------------Edit-------------------------
+
+router.put("/edit", (req, res) => {
+    
+  if (!req.session.user) {
+    return res.status(401).json({ error: "Not authenticated" });
+  }
+
+  const { username, password } = req.body;
+
+  const user = users.find(u => u.id === req.session.user.id);
+
+  if (!user) {
+    return res.status(404).json({ error: "User not found" });
+  }
+
+  if (username) {
+    const nameTaken = users.find(
+      u => u.username === username && u.id !== user.id
+    );
+
+    if (nameTaken) {
+      return res.status(409).json({ error: "Username already taken" });
+    }
+
+    user.username = username;
+    req.session.user.username = username;
+  }
+
+
+  if (password) {
+    user.password = password;
+  }
+
+  return res.status(200).json({ success: true });
+});
+
 
 //--------------Delete-------------------------
 
