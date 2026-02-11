@@ -188,14 +188,21 @@ function bindEdit() {
 }
 
 
-
 function renderWeather(container, data) {
   container.replaceChildren();
+
+  if (!data || !data.weather || !data.weather[0]) {
+    console.error("Invalid weather data:", data);
+    const error = document.createElement("p");
+    error.textContent = "Invalid weather data";
+    container.appendChild(error);
+    return;
+  }
 
   const {
     name,
     main: { temp, humidity },
-    weather: [{ description }]
+    weather: [{ description, id }]
   } = data;
 
   const wrapper = document.createElement("div");
@@ -213,8 +220,31 @@ function renderWeather(container, data) {
   const descEl = document.createElement("p");
   descEl.textContent = description;
 
-  wrapper.append(cityEl, tempEl, humidityEl, descEl);
+  const emojiEl = document.createElement("p");
+  emojiEl.textContent = getWeatherEmoji(id);
+  emojiEl.className = "weatherEmoji";
+
+  wrapper.append(cityEl, tempEl, humidityEl, descEl, emojiEl);
   container.appendChild(wrapper);
+}
+
+function getWeatherEmoji(weatherId) {
+  switch (true) {
+    case weatherId >= 200 && weatherId < 300:
+      return "🌩️";
+    case weatherId >= 300 && weatherId < 600:
+      return "🌧️";
+    case weatherId >= 600 && weatherId < 700:
+      return "🌨️";
+    case weatherId >= 700 && weatherId < 800:
+      return "🌫️";
+    case weatherId === 800:
+      return "☀️";
+    case weatherId > 800:
+      return "☁️";
+    default:
+      return "❓";
+  }
 }
 
 
