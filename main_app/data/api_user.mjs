@@ -1,7 +1,8 @@
 export async function api(method, path, data) {
   const options = {
     method,
-    headers: { "Content-Type": "application/json" }
+    headers: { "Content-Type": "application/json" },
+    credentials: "include" 
   };
 
   if (data) {
