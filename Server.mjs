@@ -28,5 +28,6 @@ app.use("/account", authRoutes);
 app.use("/documentation", express.static("documentation"));
 
 app.listen(PORT, () => {
+  const PORT = process.env.PORT || 3000;
   console.log(`Server running on http://localhost:${PORT}`);
 });
