@@ -25,6 +25,8 @@ app.use(express.static("main_app"));
 app.use("/api/weather", weatherRoutes);
 app.use("/account", authRoutes);
 
+app.use("/documentation", express.static("documentation"));
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });

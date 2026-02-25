@@ -1,5 +1,3 @@
-// Her legger jeg inn API-endepunkter for autentisering og tilgangskontroll
-
 import express from "express"
 const router = express.Router();
 const users = [];
