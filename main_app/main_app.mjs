@@ -185,6 +185,25 @@ function bindEdit() {
     state.view = "loggedin";
     update();
   };
+
+  // 🔥 DELETE BUTTON
+  document.getElementById("delete-account")
+    ?.addEventListener("click", async () => {
+
+      const confirmed = confirm("Are you sure you want to delete your account?");
+      if (!confirmed) return;
+
+      try {
+        await api("DELETE", "/account/deleteuser");
+
+        state.user = null;
+        state.view = "signin";
+        update();
+
+      } catch {
+        alert("Could not delete account");
+      }
+  });
 }
 
 
