@@ -1,6 +1,5 @@
 import express from "express"
 import { registerUser, loginUser, editUser, deleteUser } from "../service/userService.mjs";
-import { pool } from "../modules/db.mjs";
 const router = express.Router();
 
 //--------------Signup-------------------------
