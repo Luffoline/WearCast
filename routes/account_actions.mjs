@@ -8,7 +8,7 @@ router.post("/signup", async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    const newUser = registerUser(username, password);
+    const newUser = await registerUser(username, password);
 
     req.session.user = newUser;
 
@@ -33,7 +33,7 @@ router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    const user = loginUser(username, password);
+    const user = await loginUser(username, password);
 
     req.session.user = user;
 
@@ -61,7 +61,7 @@ router.post("/logout", async (req, res) =>{
 
 //--------------Edit-------------------------
 
-router.put("/edit",(req, res) => {
+router.put("/edit", async (req, res) => {
 
   if (!req.session.user) {
     return res.status(401).json({ error: "Not authenticated" });
@@ -70,7 +70,7 @@ router.put("/edit",(req, res) => {
   try {
     const { username, password } = req.body;
 
-    const updatedUser = editUser(
+    const updatedUser = await editUser(
       req.session.user.id,
       username,
       password
@@ -94,7 +94,7 @@ router.put("/edit",(req, res) => {
 
 //--------------Delete-------------------------
 
-router.delete("/deleteuser", (req, res) => {
+router.delete("/deleteuser", async (req, res) => {
 
   if (!req.session.user) {
     return res.status(401).json({ error: "Not authenticated" });
@@ -102,7 +102,7 @@ router.delete("/deleteuser", (req, res) => {
 
   try {
 
-    deleteUser(req.session.user.id);
+    await deleteUser(req.session.user.id);
 
     req.session.destroy();
 

@@ -74,15 +74,16 @@ export function editUser(userId, newUsername, newPassword) {
 }
 
 //DELETE
-export function deleteUser(userId) {
+export async function deleteUser(userId) {
 
-  const index = users.findIndex(u => u.id === userId);
+  const result = await pool.query(
+    "DELETE FROM users WHERE id = $1 RETURNING *",
+    [userId]
+  );
 
-  if (index === -1) {
+  if (result.rowCount === 0) {
     throw new Error("USER_NOT_FOUND");
   }
-
-  users.splice(index, 1);
 
   return true;
 }
