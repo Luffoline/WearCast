@@ -1,40 +1,42 @@
-const users = [];
-let userID = 1;
+import { pool } from "../modules/db.mjs";
 
 //SIGNUP
-export function registerUser(username, password) {
+export async function registerUser(username, password) {
 
   if (!username || !password) {
     throw new Error("MISSING_FIELDS");
   }
 
-  const existingUser = users.find(u => u.username === username);
+  try {
+    const result = await pool.query(
+      "INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *",
+      [username, `${username}@placeholder.com`, password]
+    );
 
-  if (existingUser) {
-    throw new Error("USERNAME_TAKEN");
+    return result.rows[0];
+
+  } catch (err) {
+    if (err.code === "23505") {
+      throw new Error("USERNAME_TAKEN");
+    }
+
+    throw err;
   }
-
-  const newUser = {
-    id: userID++,
-    username,
-    password
-  };
-
-  users.push(newUser);
-
-  return newUser;
 }
 
 //LOGIN
-export function loginUser(username, password) {
+export async function loginUser(username, password) {
 
   if (!username || !password) {
     throw new Error("MISSING_FIELDS");
   }
 
-  const user = users.find(
-    u => u.username === username && u.password === password
+  const result = await pool.query(
+    "SELECT * FROM users WHERE username = $1 AND password = $2",
+    [username, password]
   );
+
+  const user = result.rows[0];
 
   if (!user) {
     throw new Error("INVALID_CREDENTIALS");
@@ -42,6 +44,7 @@ export function loginUser(username, password) {
 
   return user;
 }
+
 //EDIT
 export function editUser(userId, newUsername, newPassword) {
 

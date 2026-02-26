@@ -5,7 +5,7 @@ const router = express.Router();
 
 //--------------Signup-------------------------
 
-router.post("/signup", (req, res) => {
+router.post("/signup", async (req, res) => {
   try {
     const { username, password } = req.body;
 
@@ -30,7 +30,7 @@ router.post("/signup", (req, res) => {
 
 //--------------Login-------------------------
 
-router.post("/login", (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
 
@@ -54,7 +54,7 @@ router.post("/login", (req, res) => {
 
 //--------------Logout-------------------------
 
-router.post("/logout", (req, res) =>{
+router.post("/logout", async (req, res) =>{
     req.session.destroy();
 
    return res.status(200).json({success: true});
@@ -62,7 +62,7 @@ router.post("/logout", (req, res) =>{
 
 //--------------Edit-------------------------
 
-router.put("/edit", (req, res) => {
+router.put("/edit",(req, res) => {
 
   if (!req.session.user) {
     return res.status(401).json({ error: "Not authenticated" });
