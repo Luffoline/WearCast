@@ -7,3 +7,5 @@ export const pool = new Pool({
     rejectUnauthorized: false
   }
 });
+
+console.log("DB URL:", process.env.DATABASE_URL);
