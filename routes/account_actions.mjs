@@ -1,10 +1,19 @@
 import express from "express"
+import i18n from "../modules/i18n.mjs";
 import { registerUser, loginUser, editUser, deleteUser } from "../service/userService.mjs";
 const router = express.Router();
 
 //--------------Signup-------------------------
 
 router.post("/signup", async (req, res) => {
+  
+  let header = req.headers["accept-language"];
+  let lang = header?.split(",")[0].split("-")[0] || "en";
+
+  if (lang === "nb") lang = "no";
+
+const locale = i18n[lang] || i18n.en;
+
   try {
     const { username, password } = req.body;
 
@@ -14,22 +23,30 @@ router.post("/signup", async (req, res) => {
 
     return res.status(201).json({ success: true });
 
-  } catch (err) {
+ } catch (err) {
 
-    if (err.message === "MISSING_FIELDS")
-      return res.status(400).json({ error: "Username and password required" });
+  if (err.message === "MISSING_FIELDS")
+    return res.status(400).json({ error: locale.MISSING_FIELDS });
 
-    if (err.message === "USERNAME_TAKEN")
-      return res.status(409).json({ error: "Username already taken" });
+  if (err.message === "USERNAME_TAKEN")
+    return res.status(409).json({ error: locale.USERNAME_TAKEN });
 
-    return res.status(500).json({ error: "Server error" });
-  }
+  return res.status(500).json({ error: locale.SERVER_ERROR });
+}
 });
 
 
 //--------------Login-------------------------
 
 router.post("/login", async (req, res) => {
+
+  let header = req.headers["accept-language"];
+  let lang = header?.split(",")[0].split("-")[0] || "en";
+
+  if (lang === "nb") lang = "no";
+
+const locale = i18n[lang] || i18n.en;
+  
   try {
     const { username, password } = req.body;
 
@@ -41,14 +58,14 @@ router.post("/login", async (req, res) => {
 
   } catch (err) {
 
-    if (err.message === "MISSING_FIELDS")
-      return res.status(400).json({ error: "Username and password required" });
+  if (err.message === "MISSING_FIELDS")
+    return res.status(400).json({ error: locale.MISSING_FIELDS });
 
-    if (err.message === "INVALID_CREDENTIALS")
-      return res.status(401).json({ error: "Invalid username or password" });
+  if (err.message === "INVALID_CREDENTIALS")
+    return res.status(401).json({ error: locale.INVALID_CREDENTIALS });
 
-    return res.status(500).json({ error: "Server error" });
-  }
+  return res.status(500).json({ error: locale.SERVER_ERROR });
+}
 });
 
 //--------------Logout-------------------------
@@ -62,9 +79,16 @@ router.post("/logout", async (req, res) =>{
 //--------------Edit-------------------------
 
 router.put("/edit", async (req, res) => {
+  
+  let header = req.headers["accept-language"];
+  let lang = header?.split(",")[0].split("-")[0] || "en";
+
+if (lang === "nb") lang = "no";
+
+const locale = i18n[lang] || i18n.en;
 
   if (!req.session.user) {
-    return res.status(401).json({ error: "Not authenticated" });
+    return res.status(401).json({ error: locale.NOT_AUTHENTICATED });
   }
 
   try {
@@ -83,21 +107,27 @@ router.put("/edit", async (req, res) => {
   } catch (err) {
 
     if (err.message === "USER_NOT_FOUND")
-      return res.status(404).json({ error: "User not found" });
+      return res.status(404).json({ error: locale.USER_NOT_FOUND });
 
     if (err.message === "USERNAME_TAKEN")
-      return res.status(409).json({ error: "Username already taken" });
+      return res.status(409).json({ error: locale.USERNAME_TAKEN });
 
-    return res.status(500).json({ error: "Server error" });
+    return res.status(500).json({ error: locale.SERVER_ERROR });
   }
 });
 
 //--------------Delete-------------------------
 
 router.delete("/deleteuser", async (req, res) => {
+let header = req.headers["accept-language"];
+let lang = header?.split(",")[0].split("-")[0] || "en";
+
+if (lang === "nb") lang = "no";
+
+const locale = i18n[lang] || i18n.en;
 
   if (!req.session.user) {
-    return res.status(401).json({ error: "Not authenticated" });
+    return res.status(401).json({ error: locale.NOT_AUTHENTICATED });
   }
 
   try {
@@ -111,9 +141,9 @@ router.delete("/deleteuser", async (req, res) => {
   } catch (err) {
 
     if (err.message === "USER_NOT_FOUND")
-      return res.status(404).json({ error: "User not found" });
+  return res.status(404).json({ error: locale.USER_NOT_FOUND });
 
-    return res.status(500).json({ error: "Server error" });
+return res.status(500).json({ error: locale.SERVER_ERROR });
   }
 });
 

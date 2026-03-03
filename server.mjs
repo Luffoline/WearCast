@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 const PORT = 3000;
 
-console.dir(process.env)
+//console.dir(process.env)
 
 app.use(
   session({
