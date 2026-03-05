@@ -70,7 +70,7 @@ function bindSignIn() {
       state.view = "loggedin";
       update();
     } catch (err) {
-      
+      alert(err.message);
     }
   };
 
@@ -267,4 +267,7 @@ function getWeatherEmoji(weatherId) {
 }
 
 
-
+//Service worker
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/service_worker.js");
+}

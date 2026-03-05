@@ -14,7 +14,7 @@ export async function api(method, path, data) {
   if (!res.ok) {
    
     const errorBody = await res.json(); 
-    throw new Error(`HTTP error! Status: ${res.status}, Message: ${errorBody.message || 'Unknown error'}`);
+    throw new Error(errorBody.error || "Unknown error");
   }
 
   return res.json();
