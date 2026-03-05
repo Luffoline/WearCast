@@ -13,13 +13,11 @@
   font-family: 'Courier New', monospace;
 }
 
-body {
-  background-color: var(--secondary);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
+body{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
 }
 
 .login-container {
@@ -31,6 +29,7 @@ body {
   box-shadow: var(--shadow);
   position: relative;
   border-radius: 12px;
+  margin: 0 auto;
 }
 
 .login-container::before {
@@ -73,11 +72,11 @@ label {
 }
 
 input {
-  width: 100%;
+  width:100%;
   padding: 12px 15px;
   border: 2px solid var(--primary);
   background-color: var(--secondary);
-  font-size: 16px;
+  font-size: 20px;
   outline: none;
   transition: all 0.3s;
 }
@@ -90,18 +89,32 @@ button {
   width: 100%;
   padding: 12px;
   background-color: var(--accent);
-  color: var(--secondary);
-  border: 2px solid var(--primary);
-  font-size: 16px;
+  color: var(--primary);
+  font-size: 20px;
   font-weight: bold;
   cursor: pointer;
   margin-top: 10px;
   transition: all 0.3s;
+  border-radius: 50px;
+  border:none;
 }
 
 button:hover {
   box-shadow: 4px 4px 0px var(--primary);
   transform: translate(-2px, -2px);
+}
+.account-panel button{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  display:flex;
+  justify-content:right;
+  align-items:center;
+  border:3px solid var(--primary);
+}
+.account-panel button img{
+  width:28px;
+  height:28px;
 }
 
 .divider {
@@ -128,7 +141,7 @@ button:hover {
 .social-btn {
   width: 50px;
   height: 50px;
-  border: 2px solid var(--primary);
+  border:3px solid var(--primary);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -146,6 +159,16 @@ button:hover {
   margin-top: 20px;
   color: var(--primary);
 }
+.dashboard-layout{
+  display:grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items:end;
+  gap:25px;
+  margin-top:40px;
+  min-height:60vh;
+  position:relative;
+  z-index:2;
+}
 
 .footer a {
   color: var(--primary);
@@ -153,21 +176,23 @@ button:hover {
   text-decoration: underline;
 }
 .dashboard-image {
-  display: block;        
-  max-width: 800px;      
-  width: 100%;           
-  margin: 20px auto;    
+  position:absolute;
+  bottom:-20px;
+  left:50%;
+  transform:translateX(-50%);
+  height:65vh;
+  pointer-events:none;
 }
 .dashboard-container {
   width: 100%;
-  max-width: 420px;
-  border: 1px solid var(--primary);
-  padding: 30px 25px;
+  min-height: 75vh;
+  border: 2px solid var(--primary);
+  padding: 40px;
   background-color: var(--secondary);
   box-shadow: var(--shadow);
-  border-radius: 12px;
-  text-align: center;
+  border-radius: 16px;
   position: relative;
+  overflow: hidden;
 }
 
 .dashboard-container::before {
@@ -182,3 +207,69 @@ button:hover {
   border-radius: 12px;
 }
 
+.weather-panel{
+  text-align:left;
+}
+.character-panel{
+  display:flex;
+  justify-content:center;
+}
+
+.account-panel{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  align-items:flex-end;
+}
+.logo{
+  font-size:42px;
+  text-align:center;
+  margin-bottom:40px;
+}
+.weather-panel{
+  text-align:left;
+  max-width:420px;
+}
+
+/* weather result */
+#weather-card{
+  margin-top:10px;
+  order:2;
+  
+}
+
+/* button after weather result */
+#weather-form button{
+  order:3;
+}
+
+/* weather card layout */
+.card{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+/* Name city */
+.card h2{  
+  font-size:90px;
+  font-family:"Oswald","sans-serif";
+  letter-spacing:5px;
+}
+
+.card p:nth-child(2){
+  font-size:75px;
+  font-weight:bold;
+}
+
+.card p{
+  margin:0;
+  max-width:none;
+  width:auto;
+  font-size:25px;
+}
+
+.weatherEmoji{
+  font-size:36px;
+  
+}

@@ -1,7 +1,15 @@
 <div class="dashboard-container">
-  <h1>Weather</h1>
+
+  <h1 class="logo">WEARCAST</h1>
+
+  <div class="dashboard-layout">
+
+ <div class="weather-panel">
 
   <form id="weather-form">
+    <div id="weather-card"></div>
+    
+    <br>
     <div class="input-group">
       <label>City</label>
       <input type="text" name="city" required />
@@ -10,14 +18,26 @@
     <button type="submit">Get Weather</button>
   </form>
 
-  <div id="weather-card"></div>
+</div>
 
-  <img
-    src="./assets/Base-figure.png"
-    alt="Base figure"
-    class="dashboard-image"
-  />
+    <div class="character-panel">
+      <img
+        src="./assets/Base-figure.png"
+        alt="WearCast character"
+        class="dashboard-image"
+      />
+    </div>
 
-  <button id="edit">Edit Account</button>
-  <button id="logout">Log Out</button>
+    <div class="account-panel">
+    <button id="edit">
+    <img src="../assets/icons/edituser_icon.png" alt="Edit user">
+    </button>
+
+   <button id="logout">
+   <img src="../assets/icons/logout_icon.png" alt="Logout">
+   </button>
+    </div>
+
+  </div>
+
 </div>
