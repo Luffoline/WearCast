@@ -1,5 +1,6 @@
 
 import { api } from "./data/api_user.mjs";
+import { getOutfitByTemperature } from "./outfit_engine.mjs";
 const app = document.getElementById("app");
 
 const state = {
@@ -245,6 +246,14 @@ function renderWeather(container, data) {
 
   wrapper.append(cityEl, tempEl, humidityEl, descEl, emojiEl);
   container.appendChild(wrapper);
+
+  const tempC = temp - 273.15;
+
+  const outfit = getOutfitByTemperature(tempC);
+
+  document.getElementById("layer-top").src = outfit[0];
+  document.getElementById("layer-pants").src = outfit[1];
+  document.getElementById("layer-accessory").src = outfit[2];
 }
 
 function getWeatherEmoji(weatherId) {
