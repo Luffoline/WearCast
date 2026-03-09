@@ -1,10 +1,8 @@
 import express from "express";
-import dotenv from "dotenv";
 import weatherRoutes from "./routes/weather_routes.mjs";
 import authRoutes from "./routes/account_actions.mjs";
 import session from "express-session";
 
-dotenv.config();
 
 const app = express();
 const PORT = 3000;
