@@ -249,11 +249,16 @@ function renderWeather(container, data) {
 
   const tempC = temp - 273.15;
 
-  const outfit = getOutfitByTemperature(tempC);
+const outfit = getOutfitByTemperature(tempC);
 
-  document.getElementById("layer-top").src = outfit[0];
-  document.getElementById("layer-pants").src = outfit[1];
-  document.getElementById("layer-accessory").src = outfit[2];
+document.getElementById("layer-top").src = outfit[0];
+document.getElementById("layer-pants").src = outfit[1];
+document.getElementById("layer-accessory").src = outfit[2];
+
+document.getElementById("weather-background").style.backgroundImage =
+`url(${outfit[3]})`;
+
+  
 }
 
 function getWeatherEmoji(weatherId) {

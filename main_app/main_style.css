@@ -3,7 +3,6 @@
   --secondary: #FFFFFF;
   --accent: #FF5E5B;
   --shadow: 8px 8px 0px var(--primary);
-  
 }
 
 * {
@@ -13,11 +12,12 @@
   font-family: 'Courier New', monospace;
 }
 
-body{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--secondary);
 }
 
 .login-container {
@@ -52,11 +52,11 @@ h1 {
   text-align: center;
 }
 
-p{
-   display: block;        
-  max-width: 180px;      
-  width: 100%;           
-  margin: 20px auto;   
+p {
+  display: block;
+  max-width: 180px;
+  width: 100%;
+  margin: 20px auto;
 }
 
 .input-group {
@@ -72,7 +72,7 @@ label {
 }
 
 input {
-  width:100%;
+  width: 100%;
   padding: 12px 15px;
   border: 2px solid var(--primary);
   background-color: var(--secondary);
@@ -88,7 +88,7 @@ input:focus {
 button {
   width: 100%;
   padding: 12px;
-  background-color:var(--accent);
+  background-color: var(--accent);
   color: var(--primary);
   font-size: 20px;
   font-weight: bold;
@@ -96,25 +96,27 @@ button {
   margin-top: 10px;
   transition: all 0.3s;
   border-radius: 50px;
-  border:2px solid var(--primary);
+  border: 2px solid var(--primary);
 }
 
 button:hover {
   box-shadow: 4px 4px 0px var(--primary);
   transform: translate(-2px, -2px);
 }
-.account-panel button{
-  width:60px;
-  height:60px;
-  border-radius:50%;
-  display:flex;
-  justify-content:right;
-  align-items:center;
-  border:2px solid var(--primary);
+
+.account-panel button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--primary);
 }
-.account-panel button img{
-  width:28px;
-  height:28px;
+
+.account-panel button img {
+  width: 28px;
+  height: 28px;
 }
 
 .divider {
@@ -125,7 +127,8 @@ button:hover {
   font-weight: bold;
 }
 
-.divider::before, .divider::after {
+.divider::before,
+.divider::after {
   content: "";
   flex: 1;
   border-bottom: 2px solid var(--primary);
@@ -141,7 +144,7 @@ button:hover {
 .social-btn {
   width: 50px;
   height: 50px;
-  border:3px solid var(--primary);
+  border: 3px solid var(--primary);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -159,15 +162,16 @@ button:hover {
   margin-top: 20px;
   color: var(--primary);
 }
-.dashboard-layout{
-  display:grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  align-items:end;
-  gap:25px;
-  margin-top:40px;
-  min-height:60vh;
-  position:relative;
-  z-index:2;
+
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  gap: 30px;
+  align-items: center;
+  min-height: 80vh;
+  position: relative;
+  z-index: 2;
+  margin-top: 20px;
 }
 
 .footer a {
@@ -175,22 +179,25 @@ button:hover {
   font-weight: bold;
   text-decoration: underline;
 }
+
 .dashboard-image {
-  position:absolute;
-  bottom:-20px;
-  left:50%;
-  transform:translateX(-50%);
-  height:65vh;
-  pointer-events:none;
+  position: absolute;
+  bottom: -450px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 70vh;
+  pointer-events: none;
+  z-index: 1;
 }
+
 .dashboard-container {
   width: 100%;
-  min-height: 75vh;
+  min-height: 85vh;
   border: 2px solid var(--primary);
-  padding: 40px;
+  padding: 50px;
   background-color: var(--secondary);
   box-shadow: var(--shadow);
-  border-radius: 16px;
+  border-radius: 20px;
   position: relative;
   overflow: hidden;
 }
@@ -198,87 +205,111 @@ button:hover {
 .dashboard-container::before {
   content: '';
   position: absolute;
-  top: 6px;
-  left: 6px;
-  right: -6px;
-  bottom: -6px;
+  top: 8px;
+  left: 8px;
+  right: -8px;
+  bottom: -8px;
   border: 1px solid var(--primary);
   z-index: -1;
-  border-radius: 12px;
+  border-radius: 20px;
 }
 
-.weather-panel{
-  text-align:left;
+.weather-panel {
+  text-align: left;
+  max-width: 400px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
 }
-.character-panel{
-  display:flex;
-  justify-content:center;
+
+.character-panel {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
 }
-.character{
-  position:relative;
+
+.character {
+  position: relative;
+  max-width: 300px;
+  margin: 0 auto;
 }
-.layer{
+
+.layer {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
 }
 
-.account-panel{
-  display:flex;
-  flex-direction:column;
-  gap:15px;
-  align-items:flex-end;
+.account-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
 }
-.logo{
-  font-size:42px;
-  text-align:center;
-  margin-bottom:40px;
-}
-.weather-panel{
-  text-align:left;
-  max-width:420px;
+
+.logo {
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--primary);
 }
 
 /* weather result */
-#weather-card{
-  margin-top:10px;
-  order:2;
-  
+#weather-card {
+  margin-top: 15px;
+  order: 2;
+}
+
+#weather-background {
+  position: absolute;
+  inset: 0;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
 }
 
 /* button after weather result */
-#weather-form button{
-  order:3;
+#weather-form button {
+  order: 3;
 }
 
 /* weather card layout */
-.card{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 /* Name city */
-.card h2{  
-  font-size:90px;
-  font-family:"Oswald","sans-serif";
-  letter-spacing:5px;
+.card h2 {
+  font-size: 80px;
+  font-family: "Oswald", "sans-serif";
+  letter-spacing: 3px;
+  color: var(--primary);
 }
 
-.card p:nth-child(2){
-  font-size:75px;
-  font-weight:bold;
+.card p:nth-child(2) {
+  font-size: 65px;
+  font-weight: bold;
+  color: var(--primary);
 }
 
-.card p{
-  margin:0;
-  max-width:none;
-  width:auto;
-  font-size:25px;
+.card p {
+  margin: 0;
+  max-width: none;
+  width: auto;
+  font-size: 22px;
+  color: var(--primary);
 }
 
-.weatherEmoji{
-  font-size:36px;
-  
+.weatherEmoji {
+  font-size: 40px;
 }
