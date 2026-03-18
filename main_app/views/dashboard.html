@@ -1,43 +1,44 @@
 <div class="dashboard-container">
 
   <h1 class="logo">WEARCAST</h1>
-   <div id="weather-background"></div>
+  <div id="weather-background"></div>
 
   <div class="dashboard-layout">
 
- <div class="weather-panel">
+    <div class="weather-panel">
+      <div id="clock"></div>
 
-  <form id="weather-form">
-    <div id="weather-card"></div>
-    
-    <br>
-    <div class="input-group">
-      <label>City</label>
-      <input type="text" name="city" required />
+      <form id="weather-form">
+        <div id="weather-card"></div>
+
+        <br>
+
+        <div class="input-group">
+          <label>City</label>
+          <input type="text" name="city" required />
+        </div>
+
+        <button type="submit">Get Weather</button>
+      </form>
     </div>
 
-    <button type="submit">Get Weather</button>
-  </form>
-
-</div>
-
-   <div class="character-panel">
-  <div class="character">
-  <img src="./assets/Base-figure.png" class="dashboard-image">
-  <img id="layer-pants" class="dashboard-image">
-  <img id="layer-top" class="dashboard-image">
-  <img id="layer-accessory" class="dashboard-image">
-</div>
-</div>
+    <div class="character-panel">
+      <div class="character">
+        <img src="./assets/Base-figure.png" class="dashboard-image">
+        <img id="layer-pants" class="dashboard-image">
+        <img id="layer-top" class="dashboard-image">
+        <img id="layer-accessory" class="dashboard-image">
+      </div>
+    </div>
 
     <div class="account-panel">
-    <button id="edit">
-    <img src="../assets/icons/edituser_icon.png" alt="Edit user">
-    </button>
+      <button id="edit">
+        <img src="../assets/icons/edituser_icon.png" alt="Edit user">
+      </button>
 
-   <button id="logout">
-   <img src="../assets/icons/logout_icon.png" alt="Logout">
-   </button>
+      <button id="logout">
+        <img src="../assets/icons/logout_icon.png" alt="Logout">
+      </button>
     </div>
 
   </div>

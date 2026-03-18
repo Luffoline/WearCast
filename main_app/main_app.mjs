@@ -1,6 +1,7 @@
 
 import { api } from "./data/api_user.mjs";
 import { getOutfitByTemperature } from "./outfit_engine.mjs";
+import { startClock } from "./clock.mjs";
 const app = document.getElementById("app");
 
 const state = {
@@ -112,6 +113,7 @@ function bindSignUp() {
 
 
 function bindLoggedIn() {
+  
   document.getElementById("logout").onclick = async () => {
     try {
       await api("POST", "/account/logout");
@@ -187,7 +189,7 @@ function bindEdit() {
     update();
   };
 
-  // 🔥 DELETE BUTTON
+  
   document.getElementById("delete-account")
     ?.addEventListener("click", async () => {
 
@@ -209,6 +211,7 @@ function bindEdit() {
 
 
 function renderWeather(container, data) {
+
   container.replaceChildren();
 
   if (!data || !data.weather || !data.weather[0]) {
@@ -221,9 +224,11 @@ function renderWeather(container, data) {
 
   const {
     name,
+    timezone,
     main: { temp, humidity },
     weather: [{ description, id }]
   } = data;
+  startClock("clock", timezone);
 
   const wrapper = document.createElement("div");
   wrapper.className = "card";

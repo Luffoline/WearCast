@@ -1,315 +1,294 @@
 :root {
-  --primary: #000000;
-  --secondary: #FFFFFF;
-  --accent: #FF5E5B;
-  --shadow: 8px 8px 0px var(--primary);
+  --primary: #ffffff;
+  --secondary: #0f172a;
+  --accent: #42a5f5;
+
+  --glass: rgba(255, 255, 255, 0.08);
+  --glass-strong: rgba(255, 255, 255, 0.15);
+
+  --blur: blur(14px);
 }
+
+/* =========================
+   RESET
+========================= */
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Courier New', monospace;
+  font-family: "Rubik", sans-serif;
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
-  background-color: var(--secondary);
-}
-
-.login-container {
-  width: 100%;
-  max-width: 400px;
-  border: 1px solid var(--primary);
-  padding: 40px 30px;
-  background-color: var(--secondary);
-  box-shadow: var(--shadow);
-  position: relative;
-  border-radius: 12px;
-  margin: 0 auto;
-}
-
-.login-container::before {
-  content: '';
-  position: absolute;
-  top: 6px;
-  left: 6px;
-  right: -6px;
-  bottom: -6px;
-  border: 1px solid var(--primary);
-  z-index: -1;
-  border-radius: 12px;
-}
-
-h1 {
-  color: var(--primary);
-  margin-bottom: 30px;
-  font-size: 28px;
-  font-weight: 700;
-  text-align: center;
-}
-
-p {
-  display: block;
-  max-width: 180px;
-  width: 100%;
-  margin: 20px auto;
-}
-
-.input-group {
-  margin-bottom: 20px;
-  position: relative;
-}
-
-label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
+  overflow: hidden;
   color: var(--primary);
 }
 
-input {
-  width: 100%;
-  padding: 12px 15px;
-  border: 2px solid var(--primary);
-  background-color: var(--secondary);
-  font-size: 20px;
-  outline: none;
-  transition: all 0.3s;
-}
+/* =========================
+   🌄 BACKGROUND
+========================= */
 
-input:focus {
-  box-shadow: 4px 4px 0px var(--primary);
-}
-
-button {
-  width: 100%;
-  padding: 12px;
-  background-color: var(--accent);
-  color: var(--primary);
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: all 0.3s;
-  border-radius: 50px;
-  border: 2px solid var(--primary);
-}
-
-button:hover {
-  box-shadow: 4px 4px 0px var(--primary);
-  transform: translate(-2px, -2px);
-}
-
-.account-panel button {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid var(--primary);
-}
-
-.account-panel button img {
-  width: 28px;
-  height: 28px;
-}
-
-.divider {
-  display: flex;
-  align-items: center;
-  margin: 25px 0;
-  color: var(--primary);
-  font-weight: bold;
-}
-
-.divider::before,
-.divider::after {
+body::before {
   content: "";
-  flex: 1;
-  border-bottom: 2px solid var(--primary);
-  margin: 0 10px;
+  position: fixed;
+  inset: 0;
+  background: url("https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?auto=format&fit=crop&w=2076&q=80") center/cover no-repeat;
+  z-index: -2;
 }
 
-.social-login {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  backdrop-filter: blur(8px);
+  background: rgba(0,0,0,0.35);
+  z-index: -1;
 }
 
-.social-btn {
-  width: 50px;
-  height: 50px;
-  border: 3px solid var(--primary);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.3s;
+/* =========================
+   🧱 MAIN CONTAINER
+========================= */
+
+.dashboard-container {
+  width: 100%;
+  height: 100vh;
+  padding: 40px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
-.social-btn:hover {
-  box-shadow: 4px 4px 0px var(--primary);
-  transform: translate(-2px, -2px);
-}
-
-.footer {
-  text-align: center;
-  margin-top: 20px;
-  color: var(--primary);
-}
+/* =========================
+   🧩 GRID LAYOUT
+========================= */
 
 .dashboard-layout {
   display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
-  gap: 30px;
+  grid-template-columns: 1fr 2fr 1fr;
+  height: 100%;
   align-items: center;
-  min-height: 80vh;
-  position: relative;
-  z-index: 2;
-  margin-top: 20px;
 }
 
-.footer a {
-  color: var(--primary);
-  font-weight: bold;
-  text-decoration: underline;
+/* =========================
+   📍 LEFT PANEL
+========================= */
+
+.weather-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80%;
+  padding: 30px;
+  border-radius: 20px;
+
+  background: var(--glass);
+  backdrop-filter: var(--blur);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* LOGO */
+.logo {
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  font-size: 18px;
+  letter-spacing: 2px;
+  opacity: 0.8;
+}
+
+/* ⏰ CLOCK PLACEHOLDER */
+#clock {
+  font-size: 64px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* WEATHER TEXT */
+.card h2 {
+  font-size: 80px;
+  color: white;
+}
+
+.card p {
+  font-size: 30px;
+  color: rgba(255,255,255,0.7);
+}
+
+/* SEARCH */
+input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+
+  background: var(--glass);
+  color: white;
+  backdrop-filter: var(--blur);
+}
+
+input::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+
+button {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+
+  background: var(--glass-strong);
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: rgba(255,255,255,0.25);
+  transform: translateY(-2px);
+}
+
+/* =========================
+   🐱 CENTER (CAT)
+========================= */
+
+.character-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================
+   🐱 FIX CAT + CLOTHES LAYERS
+========================= */
+
+.character {
+  position: relative;
+  height: 85vh; /* 👈 samme som du hadde før */
+  aspect-ratio: 1 / 1;
 }
 
 .dashboard-image {
   position: absolute;
-  bottom: -450px;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 70vh;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.dashboard-container {
-  width: 100%;
-  min-height: 85vh;
-  border: 2px solid var(--primary);
-  padding: 50px;
-  background-color: var(--secondary);
-  box-shadow: var(--shadow);
-  border-radius: 20px;
-  position: relative;
-  overflow: hidden;
-}
-
-.dashboard-container::before {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  right: -8px;
-  bottom: -8px;
-  border: 1px solid var(--primary);
-  z-index: -1;
-  border-radius: 20px;
-}
-
-.weather-panel {
-  text-align: left;
-  max-width: 400px;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  box-shadow: var(--shadow);
-}
-
-.character-panel {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  position: relative;
-}
-
-.character {
-  position: relative;
-  max-width: 300px;
-  margin: 0 auto;
-}
-
-.layer {
-  position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%); /* 👈 sentrer */
+
+  height: 100%;
+  width: auto; /* 🔥 viktig */
+
+  object-fit: contain;
+  pointer-events: none;
+
+  transition: opacity 0.25s ease;
 }
 
+/* layering */
+.dashboard-image:first-child {
+  z-index: 1; /* katten */
+}
+
+#layer-pants {
+  z-index: 2;
+}
+
+#layer-top {
+  z-index: 3;
+}
+
+#layer-accessory {
+  z-index: 4;
+}
+
+
+
+/* =========================
+   👤 RIGHT PANEL
+========================= */
 .account-panel {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  align-items: center;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  box-shadow: var(--shadow);
-}
-
-.logo {
-  font-size: 48px;
-  text-align: center;
-  margin-bottom: 30px;
-  color: var(--primary);
-}
-
-/* weather result */
-#weather-card {
-  margin-top: 15px;
-  order: 2;
-}
-
-#weather-background {
-  position: absolute;
-  inset: 0;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 0;
-}
-
-/* button after weather result */
-#weather-form button {
-  order: 3;
-}
-
-/* weather card layout */
-.card {
-  display: flex;
-  flex-direction: column;
   gap: 15px;
+
+  /* 👇 dette er det du mangler */
+  background: var(--glass);
+  backdrop-filter: var(--blur);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.1);
+
+  padding: 15px;
+
+  width: fit-content;        /* 👈 gjør den liten */
+  height: fit-content;       /* 👈 ikke full høyde */
+
+  justify-self: end;         /* 👈 høyre side */
+  align-self: center;        /* 👈 midt vertikalt */
+}
+.account-panel button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+
+  background: var(--glass);
+  backdrop-filter: var(--blur);
+  border: 1px solid rgba(255,255,255,0.1);
+
+  display: flex;           
+  justify-content: center;   
+  align-items: center;        
+  overflow: hidden;           
 }
 
-/* Name city */
-.card h2 {
-  font-size: 80px;
-  font-family: "Oswald", "sans-serif";
-  letter-spacing: 3px;
-  color: var(--primary);
+.account-panel button img {
+  width: 24px;              
+  height: 24px;           
+  object-fit: contain;       
+  filter: invert(1);         
 }
 
-.card p:nth-child(2) {
-  font-size: 65px;
-  font-weight: bold;
-  color: var(--primary);
+.account-panel button:hover {
+  background: rgba(255,255,255,0.25);
 }
 
-.card p {
-  margin: 0;
-  max-width: none;
-  width: auto;
-  font-size: 22px;
-  color: var(--primary);
+/* =========================
+   ✨ GLASS CARDS
+========================= */
+
+.weather-panel,
+.account-panel {
+  box-shadow: 0 8px 40px rgba(0,0,0,0.3);
 }
 
-.weatherEmoji {
-  font-size: 40px;
+/* =========================
+   📱 MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .character-panel {
+    order: -1;
+  }
+
+  .dashboard-image {
+    height: 40vh;
+  }
+
+  .weather-panel {
+    height: auto;
+  }
+
+  .logo {
+    font-size: 14px;
+  }
+
+  .weather-panel::before {
+    font-size: 40px;
+  }
 }
