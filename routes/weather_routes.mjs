@@ -5,7 +5,7 @@ router.get("/", async (req, res) => {
   const { city } = req.query;
   const apiKey = process.env.OPENWEATHER_API_KEY;
 
-   //console.log("API KEY:", apiKey);
+
 
   if (!city) {
     return res.status(400).json({ error: "City is required" });
@@ -14,8 +14,6 @@ router.get("/", async (req, res) => {
   try {
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
 
-   // console.log("API URL:", apiUrl);
-    
     const response = await fetch(apiUrl);
 
     if (!response.ok) {

@@ -1,18 +1,14 @@
 import express from "express"
 import i18n from "../modules/i18n.mjs";
+import { getLocalLang } from "../middleware/getLocalLang.mjs";
 import { registerUser, loginUser, editUser, deleteUser } from "../service/userService.mjs";
 const router = express.Router();
 
 //--------------Signup-------------------------
 
 router.post("/signup", async (req, res) => {
-  
-  let header = req.headers["accept-language"];
-  let lang = header?.split(",")[0].split("-")[0] || "en";
 
-  if (lang === "nb") lang = "no";
-
-const locale = i18n[lang] || i18n.en;
+const locale = getLocalLang(req);
 
   try {
     const { username, password } = req.body;
@@ -40,12 +36,7 @@ const locale = i18n[lang] || i18n.en;
 
 router.post("/login", async (req, res) => {
 
-  let header = req.headers["accept-language"];
-  let lang = header?.split(",")[0].split("-")[0] || "en";
-
-  if (lang === "nb") lang = "no";
-
-const locale = i18n[lang] || i18n.en;
+  const locale = getLocalLang(req);
   
   try {
     const { username, password } = req.body;
@@ -80,12 +71,7 @@ router.post("/logout", async (req, res) =>{
 
 router.put("/edit", async (req, res) => {
   
-  let header = req.headers["accept-language"];
-  let lang = header?.split(",")[0].split("-")[0] || "en";
-
-if (lang === "nb") lang = "no";
-
-const locale = i18n[lang] || i18n.en;
+  const locale = getLocalLang(req);
 
   if (!req.session.user) {
     return res.status(401).json({ error: locale.NOT_AUTHENTICATED });
@@ -119,12 +105,8 @@ const locale = i18n[lang] || i18n.en;
 //--------------Delete-------------------------
 
 router.delete("/deleteuser", async (req, res) => {
-let header = req.headers["accept-language"];
-let lang = header?.split(",")[0].split("-")[0] || "en";
-
-if (lang === "nb") lang = "no";
-
-const locale = i18n[lang] || i18n.en;
+  
+const locale = getLocalLang(req);
 
   if (!req.session.user) {
     return res.status(401).json({ error: locale.NOT_AUTHENTICATED });

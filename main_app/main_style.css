@@ -47,8 +47,24 @@ body::after {
   z-index: -1;
 }
 
+.login-container {
+  width: 100%;
+  max-width: 400px;        /* 🔥 controls width */
+  margin: 80px auto;       /* 🔥 centers horizontally */
+  padding: 30px;
+
+  background: var(--glass);
+  backdrop-filter: var(--blur);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.1);
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
 /* =========================
-   🧱 MAIN CONTAINER
+    MAIN CONTAINER
 ========================= */
 
 .dashboard-container {
@@ -61,7 +77,7 @@ body::after {
 }
 
 /* =========================
-   🧩 GRID LAYOUT
+    GRID LAYOUT
 ========================= */
 
 .dashboard-layout {
@@ -72,7 +88,7 @@ body::after {
 }
 
 /* =========================
-   📍 LEFT PANEL
+    LEFT PANEL
 ========================= */
 
 .weather-panel {
@@ -98,7 +114,7 @@ body::after {
   opacity: 0.8;
 }
 
-/* ⏰ CLOCK PLACEHOLDER */
+/* ⏰ CLOCK  */
 #clock {
   font-size: 64px;
   font-weight: 600;
@@ -150,7 +166,7 @@ button:hover {
 }
 
 /* =========================
-   🐱 CENTER (CAT)
+    CENTER (CAT)
 ========================= */
 
 .character-panel {
@@ -161,7 +177,7 @@ button:hover {
 }
 
 /* =========================
-   🐱 FIX CAT + CLOTHES LAYERS
+    FIX CAT + CLOTHES LAYERS
 ========================= */
 
 .character {
@@ -203,9 +219,8 @@ button:hover {
 }
 
 
-
 /* =========================
-   👤 RIGHT PANEL
+    RIGHT PANEL
 ========================= */
 .account-panel {
   display: flex;
@@ -220,11 +235,11 @@ button:hover {
 
   padding: 15px;
 
-  width: fit-content;        /* 👈 gjør den liten */
-  height: fit-content;       /* 👈 ikke full høyde */
+  width: fit-content;        
+  height: fit-content;       
 
-  justify-self: end;         /* 👈 høyre side */
-  align-self: center;        /* 👈 midt vertikalt */
+  justify-self: end;        
+  align-self: center;       
 }
 .account-panel button {
   width: 60px;
@@ -253,7 +268,7 @@ button:hover {
 }
 
 /* =========================
-   ✨ GLASS CARDS
+    GLASS CARDS
 ========================= */
 
 .weather-panel,
@@ -262,7 +277,7 @@ button:hover {
 }
 
 /* =========================
-   📱 MOBILE
+    MOBILE
 ========================= */
 
 @media (max-width: 900px) {

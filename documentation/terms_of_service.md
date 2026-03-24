@@ -1,4 +1,3 @@
-Her legger jeg inn vilkår for bruk av WearCast-applikasjonen.
 # Terms of Service
 
 ## Ownership of Data
