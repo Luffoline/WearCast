@@ -1,10 +1,7 @@
 import express from "express"
-import i18n from "../modules/i18n.mjs";
 import { getLocalLang } from "../middleware/getLocalLang.mjs";
 import { registerUser, loginUser, editUser, deleteUser } from "../service/userService.mjs";
 const router = express.Router();
-
-//--------------Signup-------------------------
 
 router.post("/signup", async (req, res) => {
 
@@ -12,11 +9,8 @@ const locale = getLocalLang(req);
 
   try {
     const { username, password } = req.body;
-
     const newUser = await registerUser(username, password);
-    
     req.session.user = newUser;
-
     return res.status(201).json({ success: true });
 
  } catch (err) {
@@ -31,22 +25,15 @@ const locale = getLocalLang(req);
 }
 });
 
-
-//--------------Login-------------------------
-
 router.post("/login", async (req, res) => {
 
   const locale = getLocalLang(req);
   
   try {
     const { username, password } = req.body;
-
     const user = await loginUser(username, password);
-
     req.session.user = user;
-
     return res.status(200).json({ success: true });
-
   } catch (err) {
 
   if (err.message === "MISSING_FIELDS")
@@ -59,7 +46,6 @@ router.post("/login", async (req, res) => {
 }
 });
 
-//--------------Logout-------------------------
 
 router.post("/logout", async (req, res) =>{
     req.session.destroy();
@@ -67,12 +53,10 @@ router.post("/logout", async (req, res) =>{
    return res.status(200).json({success: true});
 })
 
-//--------------Edit-------------------------
 
 router.put("/edit", async (req, res) => {
   
   const locale = getLocalLang(req);
-
   if (!req.session.user) {
     return res.status(401).json({ error: locale.NOT_AUTHENTICATED });
   }
@@ -102,7 +86,6 @@ router.put("/edit", async (req, res) => {
   }
 });
 
-//--------------Delete-------------------------
 
 router.delete("/deleteuser", async (req, res) => {
   

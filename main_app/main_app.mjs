@@ -1,4 +1,3 @@
-
 import { api } from "./data/api_user.mjs";
 import { renderWeather } from "./render_weather.mjs";
 const app = document.getElementById("app");
@@ -49,8 +48,6 @@ async function update() {
     binder();
   }
 }
-
-
 
 function bindSignIn() {
   document.getElementById("signin").onsubmit = async e => {
@@ -108,7 +105,6 @@ function bindSignUp() {
   };
 }
 
-
 function bindLoggedIn() {
   
   document.getElementById("logout").onclick = async () => {
@@ -126,7 +122,6 @@ function bindLoggedIn() {
     update();
   };
 }
-
 
 function bindWeather() {
   const form = document.getElementById("weather-form");
@@ -148,9 +143,6 @@ function bindWeather() {
     }
   };
 }
-
-
-
 
 function bindEdit() {
   document.getElementById("edit-form").onsubmit = async e => {
@@ -186,7 +178,6 @@ function bindEdit() {
     update();
   };
 
-  
   document.getElementById("delete-account")
     ?.addEventListener("click", async () => {
 
@@ -206,8 +197,6 @@ function bindEdit() {
   });
 }
 
-
-//Service worker
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("/service_worker.js");
 }

@@ -1,6 +1,5 @@
 import { pool } from "../modules/db.mjs";
 
-//SIGNUP
 export async function registerUser(username, password) {
 
   if (!username || !password) {
@@ -24,7 +23,6 @@ export async function registerUser(username, password) {
   }
 }
 
-//LOGIN
 export async function loginUser(username, password) {
 
   if (!username || !password) {
@@ -45,7 +43,6 @@ export async function loginUser(username, password) {
   return user;
 }
 
-//EDIT
 export function editUser(userId, newUsername, newPassword) {
 
   const user = users.find(u => u.id === userId);
@@ -73,7 +70,6 @@ export function editUser(userId, newUsername, newPassword) {
   return user;
 }
 
-//DELETE
 export async function deleteUser(userId) {
 
   const result = await pool.query(

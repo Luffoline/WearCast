@@ -8,7 +8,6 @@ export async function api(method, path, data) {
   if (data) {
     options.body = JSON.stringify(data);
   }
-
   const res = await fetch(path, options);
 
   if (!res.ok) {
@@ -16,6 +15,5 @@ export async function api(method, path, data) {
     const errorBody = await res.json(); 
     throw new Error(errorBody.error || "Unknown error");
   }
-
   return res.json();
 }

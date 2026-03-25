@@ -4,7 +4,6 @@ export function startClock(elementId = "clock", timezoneOffset = 0) {
   const clockEl = document.getElementById(elementId);
   if (!clockEl) return;
 
-  
   if (intervalId) {
     clearInterval(intervalId);
   }
@@ -22,7 +21,5 @@ export function startClock(elementId = "clock", timezoneOffset = 0) {
   }
 
   updateTime();
-
-  
   intervalId = setInterval(updateTime, 1000);
 }

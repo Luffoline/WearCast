@@ -5,8 +5,6 @@ router.get("/", async (req, res) => {
   const { city } = req.query;
   const apiKey = process.env.OPENWEATHER_API_KEY;
 
-
-
   if (!city) {
     return res.status(400).json({ error: "City is required" });
   }

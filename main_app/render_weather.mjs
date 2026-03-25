@@ -20,7 +20,6 @@ export function renderWeather(container, data) {
   } = data;
 
   startClock("clock", timezone);
-
   const wrapper = document.createElement("div");
   wrapper.className = "card";
 

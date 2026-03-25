@@ -9,7 +9,6 @@ const i18n = {
 };
 
 const localizationPath = path.join(process.cwd(), "localization");
-
 let files = fs.readdirSync(localizationPath);
 
 for (let file of files) {
