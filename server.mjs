@@ -7,8 +7,6 @@ import session from "express-session";
 const app = express();
 const PORT = 3000;
 
-//console.dir(process.env)
-
 app.use(
   session({
     secret: "dev-secret",

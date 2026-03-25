@@ -43,31 +43,30 @@ export async function loginUser(username, password) {
   return user;
 }
 
-export function editUser(userId, newUsername, newPassword) {
+export async function editUser(userId, newUsername, newPassword) {
 
-  const user = users.find(u => u.id === userId);
+  if (!newUsername && !newPassword) {
+    throw new Error("NO_CHANGES");
+  }
 
-  if (!user) {
+  const result = await pool.query(
+    `UPDATE users
+     SET username = COALESCE($1, username),
+         password = COALESCE($2, password)
+     WHERE id = $3
+     RETURNING *`,
+    [
+      newUsername ?? null,
+      newPassword ?? null,
+      userId
+    ]
+  );
+
+  if (result.rowCount === 0) {
     throw new Error("USER_NOT_FOUND");
   }
 
-  if (newUsername) {
-    const nameTaken = users.find(
-      u => u.username === newUsername && u.id !== userId
-    );
-
-    if (nameTaken) {
-      throw new Error("USERNAME_TAKEN");
-    }
-
-    user.username = newUsername;
-  }
-
-  if (newPassword) {
-    user.password = newPassword;
-  }
-
-  return user;
+  return result.rows[0];
 }
 
 export async function deleteUser(userId) {

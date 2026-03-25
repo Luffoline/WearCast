@@ -55,8 +55,9 @@ router.post("/logout", async (req, res) =>{
 
 
 router.put("/edit", async (req, res) => {
-  
   const locale = getLocalLang(req);
+
+   
   if (!req.session.user) {
     return res.status(401).json({ error: locale.NOT_AUTHENTICATED });
   }
